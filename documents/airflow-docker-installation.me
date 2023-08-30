@@ -1,0 +1,20 @@
+## Installing and running airflow in Docker 
+
+1. Download docker compose file using command : 
+curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.7.0/docker-compose.yaml'
+
+2. Setting up airflow user:
+mkdir -p ./dags ./logs ./plugins ./config
+echo -e "AIRFLOW_UID=$(id -u)" > .env
+
+3. Init database:
+docker compose up airflow-init
+
+4. Running airflow instance:
+docker compose up
+
+5. Check if airflow is up and running:
+docker ps
+docker compose run airflow-worker airflow info
+
+6. Go to localhost:8080 to open airflow webUI.
